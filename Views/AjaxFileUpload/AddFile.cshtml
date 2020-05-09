@@ -1,0 +1,41 @@
+<h1>Add file</h1>
+<div>
+    <form action="add-file" 
+        enctype="multipart/form-data" 
+        method="POST"
+        onsubmit="AJAXSubmit(this);return false;">
+        <div class="form-group">
+            <label for="txtName">Name</label>
+            <input type="text" class="form-control" id="txtName" name="Name">
+        </div>
+        <div class="form-group">
+            <label for="txtAge">Age</label>
+            <input type="text" class="form-control" id="txtAge" name="Age">
+        </div>
+        <div class="form-group">
+            <label for="fileUpload">Upload Files</label>
+            <input type="file" class="form-control-file" id="fileUpload"  name="FileUpload" multiple>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+<script>
+    async function AJAXSubmit(formElement){
+        var formData = new FormData(formElement);
+
+        try{
+            var response = await fetch(formElement.action,{
+                method: 'POST',
+                body: formData
+            });
+            if(response.status == 200){
+                alert("file uploaded success fully")
+            }else{
+                alert("failed to upload file")
+            }
+        }catch(e){
+
+        }
+    }
+</script>
